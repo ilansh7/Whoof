@@ -1,0 +1,98 @@
+﻿@{
+    Layout = (ViewEngines.Engines.FindView(this.ViewContext.Controller.ControllerContext, "_Layout", "").View as RazorView).ViewPath;
+}
+
+<div style="width: 90%; margin-left: auto; margin-right: auto;">
+    <br />
+    <span>
+        <img src="~/Content/images/dalmatian-dog-licking-his-nose-b.png" style="vertical-align: middle; float: right; height: 70%;" /></span><br />
+    <table style="position: relative; top: -45px; width: 30%;">
+        <tr>
+            <td class="padright">
+                <p class="bodytext">At Doggy Style, we have created a Dog Grooming Kit for all your essential doggy grooming needs. No matter the size or breed of dog, this kit has everything you need for a fun and mess-free grooming session! Our products and packaging are also eco-friendly and sustainable. Your doggy and the environment will love you for it!. Click on the <a href="/Event/Index" style="font-style: normal;">link</a> to be confident in your decision to try us and find more ways to save.</p>
+                @*<p class="bodytext"><span style="color: red;">EXTRA SAVINGS</span> Sunshine Rent A Car uses advanced systems to monitor the competition. During peak times other Rental Car Agencies may raise their rates significantly. Our system automatically undercuts ALL of those agencies.</p>*@
+                <p class="bodytext">
+                    <img src="~/Content/images/icons/5_stars_red.png" alt="Rated 5.0 out of 5.0" />
+                    <strong>Dogs are good for us</strong> By DW<br />
+                    The benefits of having a dog reach far and wide. They can be good for your mind, body, and spirit. In fact, research has shown that spending just 15 minutes playing with your pup can help you feel more relaxed. It also releases serotonin, improving your mood. Research has also shown lower levels of blood pressure and cholesterol in dog owners. And, they’ve gotta walk, so you do, too! Having a dog helps owners stay active and get outside.
+                </p>
+                @*<p>*@
+                    <div id="map_canvas" style="width: 400px; height: 218px"></div>
+                @*</p>*@
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<style>
+    body {
+        /*margin: 1em;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #map_canvas {
+        height: 80%;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        function initialize() {
+            var latlng = new google.maps.LatLng(32.0007293, 34.8367099);
+            var options =
+            {
+                zoom: 15,
+                center: new google.maps.LatLng(32.0007293, 34.8367099),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: true,
+                mapTypeControlOptions:
+                {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                    poistion: google.maps.ControlPosition.TOP_RIGHT,
+                    mapTypeIds: [google.maps.MapTypeId.ROADMAP,
+                      google.maps.MapTypeId.TERRAIN,
+                      google.maps.MapTypeId.HYBRID,
+                      google.maps.MapTypeId.SATELLITE]
+                },
+                navigationControl: true,
+                navigationControlOptions:
+                {
+                    style: google.maps.NavigationControlStyle.ZOOM_PAN
+                },
+                scaleControl: true,
+                disableDoubleClickZoom: true,
+                draggable: false,
+                streetViewControl: true,
+                draggableCursor: 'move'
+            };
+            
+            var map = new google.maps.Map(document.getElementById("map_canvas"), options);
+            var marker = new google.maps.Marker
+            (
+                {
+                    position: new google.maps.LatLng(32.0007293, 34.8367099),
+                    map: map,
+                    title: 'Click me'
+                }
+            );
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Info: Sunshine Rentals<br/>Location: בית דגן'
+            });
+            google.maps.event.addListener(marker, 'click', function () {
+                // Calling the open method of the infoWindow 
+                infowindow.open(map, marker);
+            });
+        }
+
+        $(document).ready(function () {
+            //debugger;
+            initialize();
+        });
+
+    </script>
+}

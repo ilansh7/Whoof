@@ -1,0 +1,25 @@
+﻿<div class="example">
+    <ul id="nav">
+        <li><a href="/Home/Index">Home</a></li>
+        <li>
+        </li>
+        @if (@User.IsInRole("User"))
+        {
+            <li><a href="/Event/Index">Appointment</a></li>
+        }
+
+        @if (@User.IsInRole("Admin"))
+        {
+            <li>
+                <a class="fly" href="#">Administration</a>
+                <ul class="dd">
+                    <li><a href="/Home/Index1">Users</a></li>
+                </ul>
+            </li>
+        }
+
+        @*<li><a href="#">About</a></li>*@
+        <li><a href="/Home/ContactPage">Contact Us</a></li>
+    </ul>
+</div>
+
